@@ -6,15 +6,11 @@
 
 ```bash
 # 1. Push to GitHub
-git init
 git add .
-git commit -m "Initial bot"
-git branch -M main
-git remote add origin https://github.com/zenibaba/ZEXXY_TELEGRAM_BOT.git
-git push -u origin main
+git commit -m "Enhanced bot with all commands"
+git push origin main
 
 # 2. Deploy to Vercel
-vercel login
 vercel --prod
 
 # 3. Add environment variables on Vercel:
@@ -27,13 +23,64 @@ vercel --prod
 curl https://api.telegram.org/bot8495488197:AAHj7xMiIP1kySVXuWU4-AtVu1kiOpPpKDk/setWebhook -d "url=https://your-bot-url.vercel.app/api/webhook"
 ```
 
-## Commands
+## 📋 Commands
 
-- `/start` - Help
-- `/gen <duration> <amount>` - Generate keys
-- `/status` - Stats
-- `/keys` - List keys
-- `/broadcast <msg>` - Notification
-- `/extend <user> <days>` - Extend time
+### Information
+- `/start` - Help menu
+- `/status` - System statistics  
+- `/keys` - List unused keys
+- `/users` - List all users
+
+### Key Generation
+- `/gen <duration> <amount> [note]` - Generate keys
+- `/genuniversal <duration> <amount>` - HWID-free keys
+- `/genreusable <duration> <amount>` - Unlimited use keys
+- `/custom` - Custom generation guide
+
+### Key Management
+- `/removekey <key>` - Delete key
+- `/bankey <key>` - Ban key
+- `/unbankey <key>` - Unban key
+
+### User Management
+- `/resethwid <user>` - Reset hardware  ID
+- `/resetpass <user> <newpass>` - Reset password
+- `/banuser <user>` - Ban user
+- `/unbanuser <user>` - Unban user
+- `/deleteuser <user>` - Delete user
+- `/extend <user> <days>` - Extend subscription
+
+### Broadcasts
+- `/broadcast [target] <message>` - Create notification
+- `/broadcasts` - List all broadcasts
+- `/togglebroadcast <id>` - Toggle active/inactive
+- `/deletebroadcast <id>` - Delete broadcast
+
+### Testing
+- `/activate <key> <user> <pass>` - Test activation
+- `/login <user> <pass> <hwid>` - Test login
+
+## Duration Formats
+- `1d`, `7d`, `30d` = Days
+- `1w`, `2w` = Weeks
+- `1m`, `6m` = Months
+- `1y` = Year
+- `lifetime` = Lifetime
+
+## Examples
+
+```bash
+# Generate 5 keys valid for 1 month
+/gen 1m 5 Premium
+
+# Generate HWID-free keys (multi-device)
+/genuniversal 1m 3 VIP
+
+# Extend user subscription by 30 days
+/extend john123 30
+
+# Create broadcast for VIP users only
+/broadcast VIP Special offer!
+```
 
 **Done!** 🎉
