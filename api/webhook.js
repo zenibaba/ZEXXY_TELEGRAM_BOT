@@ -11,7 +11,7 @@ const {
     handleBroadcast, handleBroadcasts, handleToggleBroadcast, handleDeleteBroadcast,
     handleUserStats, handleUserInfo, handlePullRarity
 } = require('../lib/commands');
-const { MAIN_MENU, KEYS_MENU, USERS_MENU, BROADCASTS_MENU, BACK_BTN } = require('../lib/keyboards');
+const { MAIN_MENU, KEYS_MENU, USERS_MENU, BROADCASTS_MENU, BACK_BTN, SETTINGS_MENU } = require('../lib/keyboards');
 
 // Process command with timeout protection
 async function processUpdate(update) {
@@ -40,6 +40,9 @@ async function processUpdate(update) {
                     break;
                 case 'broadcasts_menu':
                     await editMessageText(chatId, msgId, "*📢 Broadcast System*", BROADCASTS_MENU);
+                    break;
+                case 'settings':
+                    await editMessageText(chatId, msgId, "*⚙️ Bot Settings*", SETTINGS_MENU);
                     break;
                 case 'help':
                     await editMessageText(chatId, msgId, await handleStart(), BACK_BTN);
@@ -91,6 +94,9 @@ async function processUpdate(update) {
                     break;
                 case 'broadcast_new_prompt':
                     await sendMessage(chatId, "ℹ️ *New Broadcast:*\nUse command: `/broadcast [target] <message>`", BROADCASTS_MENU);
+                    break;
+                case 'broadcast_delete_prompt':
+                    await sendMessage(chatId, "ℹ️ *Delete Broadcast:*\nUse command: `/deletebroadcast <id>`\n_(Find IDs in 'Show Active')_", BROADCASTS_MENU);
                     break;
 
                 default:
